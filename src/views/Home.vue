@@ -1,38 +1,50 @@
 <template>
-  <div>
-    <h1>Store</h1>
+  <v-container fluid>
+    <v-row justify="center" class="my-5">
+      <v-col cols="12" md="8">
+        <h1 class="text-center">STORE</h1>
+        <v-row>
+          <v-col
+            v-for="(item, index) in dataBook"
+            :key="index"
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
+            
+          >
+            <v-card class="mx-auto my-5" max-width="300">
+              <v-img height="300" :src="item.product_image"></v-img>
 
-    <div>
-      <v-row>
-        <v-col v-for="(item, index) in dataBook" :key="index">
-          <v-card class="mx-10 my-5" width="250">
-            <v-img
-              height="300"
-              width="250"
-              src="https://www.asiabooks.com/media/catalog/product/cache/a5ac216be58c0cbce1cb04612ece96dc/9/7/9780007299263.jpg"
-            ></v-img>
+              <v-card-title>
+                {{ item.product_name }}
+              </v-card-title>
 
-            <v-card-title>
-              {{ item.product_name }}
-            </v-card-title>
+              <v-card-text class="flex-grow-1">
+                <div
+                  class="justify-space-between"
+                  
+                >
+                  <p>Price: {{ item.price }}฿</p>
+                  <p>Stock: {{ item.amount }}</p>
+                </div>
+              </v-card-text>
 
-            <v-card-text>
-              <div style="display: flex; justify-content: space-between">
-                <p>Price {{ item.price }}฿</p>
-                <p>({{ item.amount }})</p>
-              </div>
-            </v-card-text>
-
-            <v-card-actions>
-              <v-btn color="black" text @click="$router.push(`/product/${item._id}`)">
-                Add to cart
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-    </div>
-  </div>
+              <v-card-actions class="justify-center">
+                <v-btn
+                  color="black"
+                  text
+                  @click="$router.push(`/product/${item._id}`)"
+                >
+                  Add to cart
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -44,11 +56,13 @@ export default {
       dialog: false,
       id: "",
       postData: {
+        product_image: "",
         product_name: "",
         price: "",
         amount: "",
       },
       postDefault: {
+        product_image: "",
         product_name: "",
         price: "",
         amount: "",
@@ -95,7 +109,7 @@ export default {
         this.savePostData();
       }
     },
-      async savePostData() {
+    async savePostData() {
       try {
         const { data } = await this.axios.post(
           "http://localhost:3000/api/v1/products",
@@ -149,4 +163,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.d-flex {
+  margin-left: 5px;
+}
+</style>

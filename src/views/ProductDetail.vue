@@ -1,70 +1,77 @@
 <template>
-  <div>
-    <v-row>
-      <v-col>
-        <v-card class="mx-auto my-12" max-width="374">
-          <v-img
-            height="350"
-            src="https://www.asiabooks.com/media/catalog/product/cache/a5ac216be58c0cbce1cb04612ece96dc/9/7/9780007299263.jpg"
-            cover
-          ></v-img>
+  <v-container fluid>
+    <v-col>
+      <v-row>
+        <v-row>
+          <v-col>
+            <v-card class="mx-auto my-12" max-width="374">
+              <v-img height="400" :src="dataBook.product_image" cover></v-img>
 
-          <v-card-item>
-            <v-card-title>{{ dataBook.product_name }}</v-card-title>
+              <v-card-item>
+                <v-card-title>{{ dataBook.product_name }}</v-card-title>
 
-            <v-card-subtitle>
-              <span class="me-1"
-                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dolorum illo totam expedita obcaecati magni eos fuga, ex explicabo officia nobis ab maxime at! Eius perspiciatis temporibus eaque numquam unde aut pariatur provident veritatis sapiente non animi saepe sed magnam commodi rerum, dolor doloremque velit dolorem vel facere. Non, iste.</span
-              >
-            </v-card-subtitle>
-          </v-card-item>
+                <v-card-subtitle>
+                  <span class="me-1"
+                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Odio dolorum illo totam expedita obcaecati magni eos fuga,
+                    ex explicabo officia nobis ab maxime at! Eius perspiciatis
+                    temporibus eaque numquam unde aut pariatur provident
+                    veritatis sapiente non animi saepe sed magnam commodi rerum,
+                    dolor doloremque velit dolorem vel facere. Non, iste.</span
+                  >
+                </v-card-subtitle>
+              </v-card-item>
 
-          <v-divider class="mx-4 mb-1"></v-divider>
+              <v-divider class="mx-4 mb-1"></v-divider>
 
-          <v-card-actions>
-            <v-btn
-              color="deep-purple-lighten-2"
-              block
-              border
-              @click="newOrder()"
-              >Add order</v-btn
-            >
-          </v-card-actions>
-        </v-card>
+              <v-card-actions>
+                <v-btn
+                  color="deep-purple-lighten-2"
+                  block
+                  border
+                  @click="newOrder()"
+                  >Add order</v-btn
+                >
+              </v-card-actions>
+            </v-card>
 
-        <v-dialog v-model="dialog" persistent max-width="600">
-          <v-card>
-            <v-card-title>
-              {{ savemode }}
-            </v-card-title>
-            <v-card-text>
-              <v-row>
-                <!-- <v-col cols="12" sm="6" md="4">
+            <v-dialog v-model="dialog" persistent max-width="600">
+              <v-card>
+                <v-card-title>
+                  {{ savemode }}
+                </v-card-title>
+                <v-card-text>
+                  <v-row>
+                    <!-- <v-col cols="12" sm="6" md="4">
                   <v-text-field
                     v-model="orderData.customer_id"
                     label="Customer ID"
                   ></v-text-field>
                 </v-col> -->
-                <v-col cols="12" sm="6" md="4">
-                  <v-text-field
-                    v-model="orderData.quantity"
-                    label="Quantity"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="error" text @click="dialog = false"> Close </v-btn>
-              <v-btn color="blue darken-1" text @click="savePostData">
-                Add
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-col>
-    </v-row>
-  </div>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        v-model="orderData.quantity"
+                        label="Quantity"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="error" text @click="dialog = false">
+                    Close
+                  </v-btn>
+                  <v-btn color="blue darken-1" text @click="savePostData">
+                    Add
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-col>
+        </v-row>
+      </v-row>
+    </v-col>
+  </v-container>
 </template>
 
 <script>
@@ -140,11 +147,11 @@ export default {
         this.$router.push("/home");
       } catch (error) {
         console.error(error);
-        alert(error.response?.data?.message || error.message || "An error occurred");
+        alert(
+          error.response?.data?.message || error.message || "An error occurred"
+        );
       }
     },
-
-
 
     // async savePostData() {
     //   try {
